@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Logo from "../../assets/logo.png"
 
 const Dashboard = ({ onLogout, data }) => {
   const [isLogout, setIslogout] = useState(false);
@@ -9,19 +10,18 @@ const Dashboard = ({ onLogout, data }) => {
     }, 2000);
   };
   return (
-    <div className="bg-primary">
-      <div className="d-flex justify-content-between px-5 py-3">
-        <div className="text-white d-flex flex-column">
-          <h3 className="justify-content-center">Enigma Camp</h3>
-        </div>
-        <div className="text-white ">
-          <h6 className="text-right">Selamat datang, {data.username}</h6>
-          <h6 style={{ cursor: isLogout ? "not-allowed" : "pointer" }} onClick={onLogoutHandler}>
-            Logout
-          </h6>
-        </div>
+    <nav className="navbar navbar-expand-lg bg-primary px-5 py-3 justify-content-between">
+      <a className="navbar-brand text-white font-weight-bold" href="#">
+        <img src={Logo} width="50" alt="Brand" className="d-inline-block align-middle mr-2"/>
+        Enigma Camp
+      </a>
+      <div className="text-white text-right">
+        <h6>Welcome, {data.username}</h6>
+        <h6 style={{ cursor: isLogout ? "not-allowed" : "pointer" }} onClick={onLogoutHandler}>
+          Logout
+        </h6>
       </div>
-    </div>
+    </nav>
   );
 };
 

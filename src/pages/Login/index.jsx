@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/style.css";
+import BrandLogo from "../../assets/brand-logo.png";
 import AlertMessage from "../../Components/AlertMessage";
-import AuthErrorMessage from "../../Components/AuthErrorMessage"
+import AuthErrorMessage from "../../Components/AuthErrorMessage";
 
 const Auth = (props) => {
   const [username, setUsername] = useState("");
@@ -27,7 +28,7 @@ const Auth = (props) => {
         setIsUsernamePasswordError(false);
       }
     } else {
-      if (username === "admin" && password === "admin") {
+      if (username.toLowerCase() === "admin" && password === "admin") {
         setIsLoading(true);
         setTimeout(() => {
           setIsLogin(true);
@@ -55,24 +56,24 @@ const Auth = (props) => {
   };
 
   return (
-    <div className="container mt-5 shadow rounded border border-primary">
-      <div className="text-center bg-primary text-white p-3">
-        <h3>Enigma Camp</h3>
+    <div className="container mt-5 shadow rounded ">
+      <div className="text-center bg-primary text-white py-5 rounded-top">
+        <img src={BrandLogo} width="300px" alt="" />
       </div>
       <div className="text-center mt-3">{isUsernamePasswordError && <AuthErrorMessage />}</div>
       <form onSubmit={submitForm} className="p-5">
         <div className="form-group">
-          <label for="exampleInputEmail1">Username</label>
+          <label htmlFor="exampleInputEmail1">Username</label>
           <input name="username" type={"text"} className="form-control" placeholder={"username"} onChange={onChange} />
           {isUsernameEmpty && <AlertMessage label="username" />}
         </div>
         <div className="form-group">
-          <label for="exampleInputPassword1">Password</label>
+          <label htmlFor="exampleInputPassword1">Password</label>
           <input name="password" type={"password"} className="form-control" placeholder={"password"} onChange={onChange} />
           {isPasswordEmpty && <AlertMessage label="password" />}
         </div>
-        <button className={isLoading ? "btn btn-primary btn-block btn-lg" : "btn btn-primary btn-block btn-lg"} disabled={isLoading}>
-          {isLoading ? "loading ... " : "login"}
+        <button className={isLoading ? "btn btn-primary btn-block btn-lg" : "btn btn-primary btn-block btn-lg"} disabled={isLoading} style={{ cursor: isLoading ? "not-allowed" : "pointer" }}>
+          {isLoading ? "Loading ... " : "Sign In"}
         </button>
       </form>
     </div>
